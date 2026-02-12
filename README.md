@@ -26,16 +26,16 @@ The landing page reflects an **enterprise-grade**, subscription-based product.
 
 ---
 
-## 🏗 Tech Stack
+<!-- ## 🏗 Tech Stack
 
 - React (Functional Components)
 - Tailwind CSS
 - OS Auto-Detection (Windows / macOS)
 - Modal-based Developer Profile
 
----
+--- -->
 
-## 📁 Project Structure
+<!-- ## 📁 Project Structure
 
 ```
 src/
@@ -52,9 +52,9 @@ src/
  │    └── FAQ.jsx
  │
  └── App.jsx
-```
+<!-- ``` -->
 
----
+--- -->
 
 ## 💻 OS Detection Logic
 
