@@ -10,7 +10,7 @@ const clients = [
 
 export const ClientsSection = () => {
   return (
-    <section id="clients" className="bg-slate-900 border-b py-10">
+    <section id="clients" className="bg-slate-900 border-b border-slate-800 py-10">
       <div className="max-w-6xl mx-auto px-10 text-center">
         <h2 className="text-2xl font-bold text-white mb-6">
           Trusted by churches and faith-based organisations
