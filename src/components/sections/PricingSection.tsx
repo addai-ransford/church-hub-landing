@@ -73,7 +73,7 @@ export const PricingSection = () => {
   ];
 
   return (
-    <section id="pricing" className="relative max-w-6xl mx-auto px-6 py-24">
+    <section id="pricing" className="relative max-w-6xl mx-auto px-6 py-20">
       <div className="text-center">
         <h2 className="text-4xl font-bold tracking-tight">
           Pricing & Subscription
