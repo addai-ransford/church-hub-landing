@@ -42,35 +42,33 @@ const features = [
 
 export const FeaturesSection = () => {
   return (
-    <section id="features" className="max-w-6xl mx-auto px-6 py-20">
-      <h2 className="text-3xl font-bold text-center">
-        Everything Your Church Needs
-      </h2>
+    <section id="features" className="mx-auto bg-slate-900/50">
+      <section className="max-w-6xl mx-auto px-6 py-20">
+        <h2 className="text-3xl font-bold text-center">
+          Everything Your Church Needs
+        </h2>
 
-      <div className="mt-14 grid md:grid-cols-3 gap-8">
-        {features.map((item, i) => {
-          const Icon = item.icon;
+        <div className="mt-14 grid md:grid-cols-3 gap-8">
+          {features.map((item, i) => {
+            const Icon = item.icon;
 
-          return (
-            <div
-              key={i}
-              className="group rounded-2xl border border-slate-800 bg-slate-900/60 backdrop-blur-sm p-6 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
-            >
-              <div className="mb-4 w-10 h-10 flex items-center justify-center rounded-lg bg-slate-800 border border-slate-700 group-hover:border-slate-500 transition">
-                <Icon size={20} />
+            return (
+              <div
+                key={i}
+                className="group rounded-2xl border border-slate-800 bg-slate-900/60 backdrop-blur-sm p-6 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
+              >
+                <div className="mb-4 w-10 h-10 flex items-center justify-center rounded-lg bg-slate-800 border border-slate-700 group-hover:border-slate-500 transition">
+                  <Icon size={20} />
+                </div>
+
+                <h3 className="font-semibold text-lg">{item.title}</h3>
+
+                <p className="mt-2 text-sm text-slate-400">{item.desc}</p>
               </div>
-
-              <h3 className="font-semibold text-lg">
-                {item.title}
-              </h3>
-
-              <p className="mt-2 text-sm text-slate-400">
-                {item.desc}
-              </p>
-            </div>
-          );
-        })}
-      </div>
+            );
+          })}
+        </div>
+      </section>
     </section>
   );
 };
