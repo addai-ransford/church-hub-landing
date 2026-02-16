@@ -1,18 +1,6 @@
 import { useEffect, useState } from "react";
 import { Minus, X, Square, Apple, Monitor } from "lucide-react";
-
-type OS = "mac" | "windows" | "unknown";
-
-const detectOS = (): OS => {
-  if (typeof window === "undefined") return "unknown";
-
-  const ua = window.navigator.userAgent.toLowerCase();
-
-  if (ua.includes("mac")) return "mac";
-  if (ua.includes("win")) return "windows";
-
-  return "unknown";
-};
+import { detectOS, type OS } from "../../types/DetectOS";
 
 export const InstallationSection = () => {
   const [os, setOs] = useState<OS>("unknown");
@@ -61,8 +49,6 @@ export const InstallationSection = () => {
 
   return (
     <section id="installation" className="max-w-6xl mx-auto px-6 py-20">
-      
-      {/* Title + OS Badge */}
       <div className="flex items-center justify-center gap-4">
         <h2 className="text-3xl font-bold">How to Install</h2>
         <OSBadge />
@@ -79,8 +65,6 @@ export const InstallationSection = () => {
             </h3>
 
             <div className="mt-6 rounded-xl bg-slate-800 border border-slate-700 overflow-hidden">
-              
-              {/* Window Header */}
               <div className="flex items-center justify-between px-4 py-2 bg-slate-700">
                 {os === "mac" ? (
                   <div className="flex items-center gap-2">
@@ -97,13 +81,12 @@ export const InstallationSection = () => {
                 )}
               </div>
 
-              {/* Window Body */}
               <div className="h-40 flex items-center justify-center text-sm text-gray-300 border-t border-dashed text-center px-6">
                 {os === "mac"
                   ? step.mac
                   : os === "windows"
-                  ? step.windows
-                  : "Download the version compatible with your device."}
+                    ? step.windows
+                    : "Download the version compatible with your device."}
               </div>
             </div>
           </div>
