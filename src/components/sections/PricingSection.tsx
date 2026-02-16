@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { AnimatedSection } from "../AnimatedSection";
-
-type Billing = "monthly" | "annual";
+import { PricingCard } from "./PricingCard";
+import { usePricingActions } from "../PricingActions";
+import type { Billing } from "../../types/billing";
 
 const PRICING_ENV = {
   standard: {
@@ -20,6 +21,7 @@ const PRICING_ENV = {
 
 export const PricingSection = () => {
   const [billing, setBilling] = useState<Billing>("monthly");
+  const { handleAction, ui: modals } = usePricingActions(billing);
 
   const plans = [
     {
@@ -34,6 +36,7 @@ export const PricingSection = () => {
       ],
       button: "Subscribe & Download",
       style: "bg-slate-900 border-slate-800 shadow-xl",
+      planKey: "standard",
     },
     {
       title: "Enterprise",
@@ -53,8 +56,8 @@ export const PricingSection = () => {
       badgeStyle:
         "absolute -top-4 left-1/2 -translate-x-1/2 bg-fuchsia-600 text-white text-xs px-4 py-1 rounded-full",
       buttonStyle: "bg-white text-fuchsia-900 hover:bg-slate-200",
+      planKey: "enterprise",
     },
-
     {
       title: "Custom",
       description: "Tailored implementation",
@@ -69,6 +72,7 @@ export const PricingSection = () => {
       style: "bg-slate-900 border-slate-800 shadow-xl",
       buttonStyle:
         "border border-fuchsia-600 text-fuchsia-400 hover:bg-fuchsia-600 hover:text-white",
+      planKey: "custom",
     },
   ];
 
@@ -106,47 +110,16 @@ export const PricingSection = () => {
       <div className="mt-16 grid md:grid-cols-3 gap-8">
         {plans.map((plan, i) => (
           <AnimatedSection key={plan.title} delay={i * 0.1} direction="left">
-            <div
-              className={`rounded-3xl p-10 flex flex-col justify-between ${plan.style} min-h-[420px]`}
-            >
-              {plan.badge && (
-                <div className={plan.badgeStyle}>{plan.badge}</div>
-              )}
-
-              <div>
-                <h3 className="text-xl font-semibold">{plan.title}</h3>
-                <p className="mt-2 text-slate-400 text-sm">
-                  {plan.description}
-                </p>
-
-                <div className="mt-6">
-                  <span className="text-4xl font-bold">{plan.price}</span>
-                  {plan.price !== "On Request" && (
-                    <span className="text-slate-400 ml-2 text-sm">
-                      / {billing === "monthly" ? "month" : "year"}
-                    </span>
-                  )}
-                </div>
-
-                <ul className="mt-8 space-y-3 text-sm text-slate-300">
-                  {plan.features.map((feature, idx) => (
-                    <li key={idx}>✔ {feature}</li>
-                  ))}
-                </ul>
-              </div>
-
-              <button
-                className={`mt-10 w-full rounded-xl px-6 py-3 font-semibold transition ${
-                  plan.buttonStyle ||
-                  "bg-fuchsia-600 text-white hover:bg-fuchsia-700"
-                }`}
-              >
-                {plan.button}
-              </button>
-            </div>
+            <PricingCard
+              plan={plan}
+              billing={billing}
+              onAction={handleAction}
+            />
           </AnimatedSection>
         ))}
       </div>
+
+      {modals}
     </section>
   );
 };
