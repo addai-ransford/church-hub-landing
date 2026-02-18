@@ -63,7 +63,8 @@ jobs:
             --platform managed \
             --execution-environment gen2 \
             --allow-unauthenticated \
-            --service-account=church-hub-cd@caci-church-hub.iam.gserviceaccount.com \
+             --service-account=church-hub-cd@caci-church-hub.iam.gserviceaccount.com \
+            --add-cloudsql-instances caci-church-hub:europe-west1:church-hub-db \
             --memory 256Mi \
             --cpu 1 \
             --port 8080 \
