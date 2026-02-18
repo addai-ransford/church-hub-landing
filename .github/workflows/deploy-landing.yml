@@ -19,6 +19,7 @@ jobs:
       SERVICE_NAME: church-hub-landing
       IMAGE_SHA: europe-west1-docker.pkg.dev/caci-church-hub/church-hub/landing:${{ github.sha }}
       IMAGE_LATEST: europe-west1-docker.pkg.dev/caci-church-hub/church-hub/landing:latest
+      DOCKER_CONFIG: ${{ github.workspace }}/.docker
 
     steps:
       - name: Checkout source
