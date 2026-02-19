@@ -25,6 +25,12 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v4
 
+      - name: Load environment variables
+        run: |
+          cat <<'EOF' > .env
+          ${{ secrets.ENV_FILE }}
+          EOF
+
       # 🔐 GCP Auth
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v2
@@ -72,4 +78,5 @@ jobs:
             --cpu 1 \
             --cpu-boost \
             --timeout 300 \
+            --env-vars-file .env \
             --quiet
