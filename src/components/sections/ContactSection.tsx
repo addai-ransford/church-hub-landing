@@ -1,30 +1,46 @@
-import { PortalWrapper } from "../PortalWrapper";
+import { useState } from "react";
+import { ContactDrawer } from "../modal/ContactDrawer";
 
-interface Props {
-  isOpen: boolean;
-  onClose: () => void;
-}
+export const ContactSection = () => {
+  const [isOpen, setIsOpen] = useState(false);
 
-export const ContactDrawer = ({ isOpen, onClose }: Props) => {
   return (
-    <PortalWrapper
-      isOpen={isOpen}
-      onClose={onClose}
-      className="justify-end"
-      backdropClassName="fixed inset-0 bg-black/50"
-    >
-      <div className="w-full max-w-md h-full bg-slate-900 p-8">
-        <h2 className="text-xl font-bold text-white mb-4">Contact Us</h2>
-        <p className="text-slate-400 mb-6">
-          Enterprise & custom deployments handled directly by our team.
+    <>
+      <section
+        id="contact"
+        className="max-w-4xl mx-auto px-6 py-24 text-center"
+      >
+        <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-fuchsia-400 to-pink-500 bg-clip-text text-transparent">
+          Need Something Custom?
+        </h2>
+
+        <p className="mt-6 text-slate-400 max-w-2xl mx-auto leading-relaxed">
+          We partner with churches that require custom workflows, integrations,
+          private cloud deployments, on-premise hosting, or data migration from
+          legacy systems.
         </p>
-        <button
-          onClick={onClose}
-          className="mt-auto w-full bg-fuchsia-600 py-3 rounded-xl text-white font-semibold"
-        >
-          Close
-        </button>
-      </div>
-    </PortalWrapper>
+
+        <div className="mt-10">
+          <button
+            onClick={() => setIsOpen(true)}
+            className="inline-flex items-center justify-center
+            rounded-xl bg-gradient-to-r from-fuchsia-600 to-pink-600
+            px-8 py-4 font-semibold text-white
+            shadow-lg shadow-fuchsia-600/20
+            hover:shadow-fuchsia-600/40
+            transition-all duration-300"
+          >
+            Contact Us
+          </button>
+        </div>
+
+        <p className="mt-6 text-xs text-slate-500">
+          Enterprise and custom deployments are handled directly by our
+          development team.
+        </p>
+      </section>
+
+      <ContactDrawer isOpen={isOpen} onClose={() => setIsOpen(false)} />
+    </>
   );
 };
