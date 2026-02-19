@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useStripeCheckout } from "../hooks/useStripeCheckout";
+import { PortalWrapper } from "./PortalWrapper";
 import type { CheckoutRequest } from "./PricingActions";
 
 interface Props {
@@ -9,27 +10,16 @@ interface Props {
   billing: "monthly" | "annual";
 }
 
-export const SubscriptionFlowModal = ({
-  isOpen,
-  onClose,
-  plan,
-  billing,
-}: Props) => {
+export const SubscriptionFlowModal = ({ isOpen, onClose, plan, billing }: Props) => {
   const { startCheckout, loading } = useStripeCheckout();
   const [step, setStep] = useState<1 | 2>(1);
 
-  if (!isOpen) return null;
-
   return (
-    <div className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center">
-      <div className="bg-slate-900 w-full max-w-md rounded-2xl p-8 border border-slate-800">
+    <PortalWrapper isOpen={isOpen} onClose={onClose}>
+      <div className="bg-slate-900 w-full max-w-md rounded-2xl p-8 border border-slate-800 shadow-2xl">
         <div className="flex justify-between mb-6 text-sm">
-          <span className={step === 1 ? "text-fuchsia-500" : "text-slate-500"}>
-            1. Pay
-          </span>
-          <span className={step === 2 ? "text-fuchsia-500" : "text-slate-500"}>
-            2. Download
-          </span>
+          <span className={step === 1 ? "text-fuchsia-500" : "text-slate-500"}>1. Pay</span>
+          <span className={step === 2 ? "text-fuchsia-500" : "text-slate-500"}>2. Download</span>
         </div>
 
         {step === 1 && (
@@ -44,13 +34,11 @@ export const SubscriptionFlowModal = ({
             Pay & Continue
           </button>
         )}
-        <button
-          onClick={onClose}
-          className="mt-4 w-full text-slate-400 text-sm"
-        >
+
+        <button onClick={onClose} className="mt-4 w-full text-slate-400 text-sm">
           Close
         </button>
       </div>
-    </div>
+    </PortalWrapper>
   );
 };
