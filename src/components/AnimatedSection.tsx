@@ -13,8 +13,8 @@ export const AnimatedSection = ({
   children,
   delay = 0,
   direction = "up",
-  distance = 40,
-  once = false,
+  distance = 20,
+  once = true,
 }: Props) => {
   const getInitial = () => {
     switch (direction) {
@@ -33,10 +33,10 @@ export const AnimatedSection = ({
     <motion.div
       initial={getInitial()}
       whileInView={{ opacity: 1, x: 0, y: 0 }}
-      viewport={{ once, margin: "-80px" }}
+      viewport={{ once, margin: "-40px" }}
       transition={{
-        duration: 1,
-        ease: [0.16, 1, 0.3, 1],
+        duration: 0.6,
+        ease: "easeOut",
         delay,
       }}
       style={{ willChange: "transform, opacity" }}

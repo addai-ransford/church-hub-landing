@@ -49,14 +49,16 @@ export default function ChurchHubLanding() {
       <Navbar />
 
       {sections.map(({ Component, props, delay, direction, distance }, i) => (
-        <AnimatedSection
-          key={i}
-          delay={delay ?? i * 0.05}
-          direction={direction ?? "up"}
-          distance={distance ?? 40}
-        >
-          <Component {...props} />
-        </AnimatedSection>
+         <Component {...props} />
+
+        // <AnimatedSection
+        //   key={i}
+        //   delay={delay ?? i * 0.05}
+        //   direction={direction ?? "up"}
+        //   distance={distance ?? 40}
+        // >
+        //  <Component {...props} />
+        // </AnimatedSection>
       ))}
     </div>
   );

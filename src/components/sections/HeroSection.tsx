@@ -6,6 +6,12 @@ type Props = {
 };
 
 export const HeroSection = ({ os }: Props) => {
+  const scrollToPricing = () => {
+    const section = document.getElementById("pricing");
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
   return (
     <section className="bg-gradient-to-br from-indigo-950 via-fuchsia-900 to-slate-950 border-b border-slate-800">
       <div className="max-w-6xl mx-auto px-6 py-24 text-center">
@@ -27,17 +33,21 @@ export const HeroSection = ({ os }: Props) => {
             Paid software · Subscription required to download
           </span>
 
-       
-
           {(os === "windows" || os === "other") && (
-            <button className="inline-flex rounded-xl bg-fuchsia-600 px-6 py-3 text-white font-semibold shadow hover:bg-fuchsia-700">
+            <button
+              className="inline-flex rounded-xl bg-fuchsia-600 px-6 py-3 text-white font-semibold shadow hover:bg-fuchsia-700"
+              onClick={scrollToPricing}
+            >
               <Download size={18} />
               Subscribe & Download for Windows
             </button>
           )}
 
           {(os === "mac" || os === "other") && (
-            <button className="inline-flex items-center gap-2 rounded-xl border border-slate-800 bg-slate-900 px-6 py-3 font-semibold text-slate-100 shadow-sm hover:bg-slate-800 transition  hover:border-slate-400">
+            <button
+              className="inline-flex items-center gap-2 rounded-xl border border-slate-800 bg-slate-900 px-6 py-3 font-semibold text-slate-100 shadow-sm hover:bg-slate-800 transition  hover:border-slate-400"
+              onClick={scrollToPricing}
+            >
               <Download size={18} />
               Subscribe & Download for macOS
             </button>
