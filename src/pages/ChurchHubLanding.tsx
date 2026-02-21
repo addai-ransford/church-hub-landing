@@ -9,7 +9,6 @@ import {
   ContactSection,
   FAQSection,
   Footer,
-  AnimatedSection,
   Navbar,
   ClientsSection,
 } from "../components";
@@ -48,7 +47,7 @@ export default function ChurchHubLanding() {
     <div className="min-h-screen bg-slate-950 text-slate-100 overflow-x-hidden">
       <Navbar />
 
-      {sections.map(({ Component, props, delay, direction, distance }, i) => (
+      {sections.map(({ Component, props,  }) => (
          <Component {...props} />
 
         // <AnimatedSection
